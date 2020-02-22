@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         getLastLocationAfterPermission()
 
+        // To check location settings, runtime permissions are not required
+        checkLocationSettings()
+    }
+
+    private fun checkLocationSettings() {
         val locationRequest = LocationRequest.create()?.apply {
             interval = 5000
             fastestInterval = 2000
