@@ -1,6 +1,5 @@
 package com.madrapps.location_playground
 
-import android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -28,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val locationRequest = LocationRequest.create()?.apply {
-        interval = 5000
-        fastestInterval = 2000
+        interval = 1000
+        fastestInterval = 1000
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
 
@@ -125,8 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun requestLocationPermission(requestCode: Int, body: () -> Unit) {
         if (checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
             val permissions = if (SDK_INT >= Q) arrayOf(
-                ACCESS_FINE_LOCATION,
-                ACCESS_BACKGROUND_LOCATION
+                ACCESS_FINE_LOCATION
             ) else arrayOf(ACCESS_FINE_LOCATION)
             ActivityCompat.requestPermissions(this, permissions, requestCode)
         } else {
